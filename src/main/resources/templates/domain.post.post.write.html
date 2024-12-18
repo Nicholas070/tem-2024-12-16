@@ -1,7 +1,5 @@
 <h1>글 쓰기</h1>
 
-<div th:utext="${errorMessage}"></div>
-
 <form method="POST" th:object="${postWriteForm}">
     <div th:if="${#fields.hasAnyErrors()}">
         <div th:each="err : ${#fields.allErrors().stream().sorted()}" th:text="${err.split('-', 2)[1]}"/>

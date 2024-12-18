@@ -11,3 +11,5 @@ public class TemApplication {
 	}
 
 }
+//어떻게 실행이 안되나요?\
+//계속 이화면입니다.

@@ -10,11 +10,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/posts")
@@ -41,26 +39,27 @@ public class PostController {
                         .build()
         );
     }};
-
+//인텔리제이 설정화면한번열어주시겠어요
     @GetMapping
-    @ResponseBody
-    public String showList() {
-        String ul = "<ul>" + posts
-                .reversed()
-                .stream()
-                .map(post -> "<li>%s</li>".formatted(post.getTitle()))
-                .collect(Collectors.joining()) + "</ul>";
+    public String showList(Model model) {
+        model.addAttribute("posts", posts.reversed());
 
-        String body = """
-                <h1>글 목록</h1>
-                
-                %s
-                
-                <a href="/posts/write">글쓰기</a>
-                """.formatted(ul);
-
-        return body;
+        return "domain/post/post/list";
     }
+
+
+//    @GetMapping("/{id}")
+//    public String showDetail(Model model, @PathVariable("id") Integer id) {
+//        Post post = posts
+//                .stream()
+//                .filter(p -> p.getId() == id.longValue())
+//                .findFirst()
+//                .orElseThrow();
+//
+//        model.addAttribute("post", post);
+//
+//        return "domain/post/post/detail";
+//    }
 
 
     private record PostWriteForm(
@@ -75,10 +74,10 @@ public class PostController {
 
     @GetMapping("/write")
     public String showWrite(
-            PostWriteForm form
     ) {
-        return "domain/post/post/write";
-    }
+       return "test";
+    }//잠시 쉬고계시지요... 혼지서 하시려구요..? ㅎ...
+    //이거 그대로 커밋해서 올려주세요 제 컴퓨터에서 테스트해보겠습니다. 아 제 주소에 그대로 커밋해볼까요? 네네 넵
 
     @PostMapping("/write")
     public String write(

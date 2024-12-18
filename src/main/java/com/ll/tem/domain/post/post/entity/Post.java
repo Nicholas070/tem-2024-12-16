@@ -1,4 +1,3 @@
-
 package com.ll.tem.domain.post.post.entity;
 
 import lombok.Builder;
